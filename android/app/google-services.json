@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1059814916512",
+    "project_id": "odyssey-a5cd3",
+    "storage_bucket": "odyssey-a5cd3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059814916512:android:aba0ac4bdf4685bd85a4c5",
+        "android_client_info": {
+          "package_name": "com.example.gradution_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBw-kctaC_p1ritePqpgpCaAUfcithJoRE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

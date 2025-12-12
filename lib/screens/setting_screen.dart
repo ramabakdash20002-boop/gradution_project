@@ -57,7 +57,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Switch(
             value: value,
             onChanged: onChanged,
-            activeColor: _sliderActiveColor,
+            activeThumbColor: _sliderActiveColor,
             inactiveThumbColor: Colors.white30,
             inactiveTrackColor: Colors.white12,
           ),

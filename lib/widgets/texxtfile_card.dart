@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 class texxtfile extends StatelessWidget {
-   texxtfile({this.text});
+   const texxtfile({super.key, this.text});
  final String? text;
 
   @override
