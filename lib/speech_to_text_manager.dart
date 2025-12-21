@@ -5,17 +5,16 @@ class SpeechManager {
   late stt.SpeechToText _speech;
   bool _isListening = false;
 
-  // إضافة خاصية وصول (Getter) لحالة الاستماع
+   
   bool get isListening => _isListening;
   
-  // دالة التهيئة: بتشيك إذا الموبايل بيدعم الخدمة ولا لأ
+  
   Future<bool> initSTT() async {
     _speech = stt.SpeechToText();
     try {
       bool available = await _speech.initialize(
         onStatus: (status) {
            print('STT Status: $status'); 
-           // تحديث الحالة الداخلية عند تغيير حالة الـ STT
            if (status == stt.SpeechToText.listeningStatus) {
              _isListening = true;
            } else {
@@ -31,12 +30,11 @@ class SpeechManager {
     }
   }
 
-  // دالة بدء الاستماع
+  
   void startListening(Function(String) onResult) async {
     if (!_speech.isListening) { 
       await _speech.listen(
         onResult: (val) {
-          // نرسل النتيجة فقط عندما تكون نهائية
           if (val.finalResult) {
             onResult(val.recognizedWords);
           }
@@ -50,7 +48,6 @@ class SpeechManager {
     }
   }
 
-  // دالة إيقاف الاستماع يدوياً
   void stopListening() {
     if (_speech.isListening) {
       _speech.stop();

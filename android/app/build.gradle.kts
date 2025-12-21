@@ -25,7 +25,10 @@ android {
         applicationId = "com.example.gradution_project"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
+        
+        // 💡 الإصلاح النهائي: نجبر minSdkVersion على 21 لحل مشاكل البناء مع Firebase
+        minSdk = flutter.minSdkVersion 
+        
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName

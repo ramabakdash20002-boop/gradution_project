@@ -17,7 +17,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final ImagePicker _picker = ImagePicker();
   XFile? _image;
 
-  // دالة تشغيل الكاميرا
   Future<void> pickImageFromCamera() async {
     final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gradution_project/main.dart'; // تأكد من المسار الصحيح لملف main.dart
+import 'package:gradution_project/main.dart';
+// **تعديل 1: استبدال HomeScreen بـ MainHomeScreen ليتطابق مع اسم الكلاس الجديد**
+ // تأكد من المسار الصحيح
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,10 +14,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // الانتقال إلى الشاشة الرئيسية بعد ثانيتين
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
+        MaterialPageRoute(builder: (context) => const MainHomeScreen()),
       );
     });
   }
@@ -28,7 +29,6 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // يمكنك إضافة شعار التطبيق هنا
             CircularProgressIndicator(color: Colors.white),
             SizedBox(height: 20),
             Text(
