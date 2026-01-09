@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart'; // 1. استيراد المكتبة
 import 'package:gradution_project/screens/home_screen.dart';
+import 'package:gradution_project/main.dart';
 
 class NewContactScreen extends StatefulWidget {
   const NewContactScreen({super.key});
@@ -189,7 +190,7 @@ class _NewContactScreenState extends State<NewContactScreen> {
             ElevatedButton(
               onPressed: () {
                 _speak("جاري حفظ جهة الاتصال والعودة للقائمة الرئيسية");
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const MainHomeScreen()));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF007AFF),

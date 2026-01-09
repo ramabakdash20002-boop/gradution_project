@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gradution_project/screens/home_screen.dart';
+import 'package:gradution_project/main.dart';
 
 class NewContactScreen extends StatefulWidget {
   const NewContactScreen({super.key});
@@ -172,7 +173,7 @@ class _NewContactScreenState extends State<NewContactScreen> {
               child: GestureDetector(
                 onTap: (){
                   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
-                    return HomeScreen();
+                    return MainHomeScreen();
                   }));
                 },
                 child: const Text('Save Contact')),

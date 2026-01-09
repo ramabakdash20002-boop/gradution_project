@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tts/flutter_tts.dart'; // Import TTS library
-import 'package:gradution_project/screens/add_contact_screen.dart';
-import 'package:gradution_project/screens/home_screen.dart';
+import 'package:flutter_tts/flutter_tts.dart'; 
+// 💡 استيراد الشاشات المطلوبة للربط الصحيح
+import 'home_screen.dart'; 
+import 'add_contact_screen.dart';
 
 class CategoricalScreen extends StatefulWidget {
   const CategoricalScreen({super.key});
@@ -16,13 +17,13 @@ class _CategoricalScreenState extends State<CategoricalScreen> {
   @override
   void initState() {
     super.initState();
-    // Start voice assistant as soon as the screen opens
+    // بدء المساعد الصوتي بمجرد فتح الشاشة
     Future.delayed(const Duration(milliseconds: 500), () {
       _initVoiceAndSpeak();
     });
   }
 
-  // Initialize TTS in English and speak welcome message
+  // تهيئة الصوت بالإنجليزية ونطق التعليمات
   Future<void> _initVoiceAndSpeak() async {
     await _flutterTts.setLanguage("en-US");
     await _flutterTts.setVolume(1.0);
@@ -46,61 +47,58 @@ class _CategoricalScreenState extends State<CategoricalScreen> {
       appBar: AppBar(
         backgroundColor: const Color(0xff243647),
         elevation: 0,
-        title: Align(
-          alignment: Alignment.centerRight,
-          child: Image.asset("lib/assets/image.png", height: 38, width: 38),
+        centerTitle: true,
+        title: const Text(
+          "Choose Your Category",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 20),
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: Text(
-                  "Choose Your Category",
-                  style: TextStyle(
-                    color: Colors.white, 
-                    fontWeight: FontWeight.bold, 
-                    fontSize: 26
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 30),
             
-            // --- 1. Elderly Category ---
+            // --- 1. Elderly Category (الربط الصحيح) ---
             _buildCategoryCard(
               title: "Elderly",
               imagePath: "lib/assets/eldry.png",
-              voiceMsg: "Elderly category selected",
+              voiceMsg: "Elderly category selected. Opening your features menu.",
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+                // ✅ التعديل: ننتقل لـ CategoryHomeScreen وليس MainHomeScreen
+                Navigator.push(
+                  context, 
+                  MaterialPageRoute(builder: (context) => const CategoryHomeScreen(categoryName: 'Elderly'))
+                );
               },
             ),
 
-            const SizedBox(height: 40),
+            const SizedBox(height: 30),
 
             // --- 2. Student Category ---
             _buildCategoryCard(
               title: "Student",
               imagePath: "lib/assets/student.png",
-              voiceMsg: "Student category selected",
+              voiceMsg: "Student category selected.",
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const NewContactScreen()));
+                Navigator.push(
+                  context, 
+                  MaterialPageRoute(builder: (context) => const CategoryHomeScreen(categoryName: 'Student'))
+                );
               },
             ),
 
-            const SizedBox(height: 40),
+            const SizedBox(height: 30),
 
             // --- 3. Children Category ---
             _buildCategoryCard(
               title: "Children",
               imagePath: "lib/assets/child.png",
-              voiceMsg: "Children category selected",
+              voiceMsg: "Children category selected.",
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const NewContactScreen()));
+                Navigator.push(
+                  context, 
+                  MaterialPageRoute(builder: (context) => const CategoryHomeScreen(categoryName: 'Children'))
+                );
               },
             ),
             const SizedBox(height: 40),
@@ -110,7 +108,7 @@ class _CategoricalScreenState extends State<CategoricalScreen> {
     );
   }
 
-  // Helper widget to build the category cards with voice feedback
+  // ودجت بناء الكروت مع تفعيل النطق عند اللمس
   Widget _buildCategoryCard({
     required String title,
     required String imagePath,
@@ -120,47 +118,34 @@ class _CategoricalScreenState extends State<CategoricalScreen> {
     return Center(
       child: GestureDetector(
         onTap: () {
-          _speak(voiceMsg); // Speak when tapped
-          onTap(); // Navigate to the next screen
+          _speak(voiceMsg); 
+          onTap(); 
         },
         child: Container(
-          width: 290,
-          height: 130,
+          width: 320,
+          height: 140,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(25),
             color: const Color(0xff3E5268),
             boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.2),
-                blurRadius: 10,
-                offset: const Offset(0, 5),
-              )
+              BoxShadow(color: Colors.black.withOpacity(0.3), blurRadius: 10, offset: const Offset(0, 5))
             ],
           ),
           child: Row(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 30),
-                child: Container(
-                  width: 70,
-                  height: 70,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: AssetImage(imagePath),
-                    ),
-                    borderRadius: BorderRadius.circular(33),
-                  ),
+              const SizedBox(width: 25),
+              // أيقونة الفئة
+              Container(
+                width: 70, height: 70,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(image: AssetImage(imagePath), fit: BoxFit.cover),
                 ),
               ),
-              const SizedBox(width: 15),
+              const SizedBox(width: 25),
               Text(
                 title,
-                style: const TextStyle(
-                  color: Colors.white, 
-                  fontSize: 32, 
-                  fontWeight: FontWeight.w500
-                ),
+                style: const TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),
               )
             ],
           ),
@@ -171,7 +156,7 @@ class _CategoricalScreenState extends State<CategoricalScreen> {
 
   @override
   void dispose() {
-    _flutterTts.stop(); // Stop voice when leaving the screen
+    _flutterTts.stop(); 
     super.dispose();
   }
 }
